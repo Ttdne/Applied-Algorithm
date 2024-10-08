@@ -60,6 +60,13 @@ void traversal_matrix2(int v){
 int main(){
     freopen("test.txt", "r", stdin);
     for(int i=0; i<10; i++) visited[i] = false;
-    input2();
-    traversal_matrix2(1);
+    input();
+    int sum=0;
+    for(int i=1; i<=V; i++){
+        if(!visited[i]){
+            traversal_matrix(i);
+            sum++;
+        }
+    }
+    cout<<endl<<sum;
 }
