@@ -26,7 +26,7 @@ void input2(){
 }
 
 void DFS_traversal(int i){
-    cout<<i<<"->";
+    cout<<i<<" ";
     visited[i] = true;
     for(int j=1; j<=n; j++){
         if(adj_matrix[i][j] == 1 && visited[j] == false){
@@ -36,7 +36,6 @@ void DFS_traversal(int i){
 }
 
 int main(){
-    freopen("test.txt", "r", stdin);
     for(int i=0; i<10; i++) visited[i] = false;
     input();
     int sum=0;
@@ -46,5 +45,4 @@ int main(){
             sum++;
         }
     }
-    cout<<endl<<sum;
 }
