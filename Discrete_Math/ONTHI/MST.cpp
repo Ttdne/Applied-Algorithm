@@ -1,12 +1,14 @@
 #include<bits/stdc++.h>
+#define MAX 100010
 using namespace std;
 /*Sắp xếp các cạnh: Sắp xếp tất cả các cạnh của đồ thị theo trọng số.
 Khởi tạo các tập hợp: Sử dụng Disjoint Set để khởi tạo mỗi đỉnh trong đồ thị thành một tập hợp riêng biệt.
 Chọn các cạnh: Duyệt qua danh sách các cạnh đã sắp xếp, và cho mỗi cạnh, sử dụng hàm findSet để kiểm tra xem hai đỉnh của cạnh đó có thuộc cùng một tập hợp không. Nếu không, thêm cạnh vào cây bao trùm và hợp nhất hai tập hợp bằng hàm link.
 */
-int parent[100];
-int r[100];
+int parent[MAX];
+int r[MAX];
 int n, m;
+int maxN = 0;
 struct Edge {
     int src, dest, weight;
 };
@@ -44,13 +46,14 @@ void Kruskal(){
         if(findset(u) != findset(v)){
             result.push_back(edge);
             weight += edge.weight;
+            maxN = max(edge.weight, maxN);
             link(findset(u),findset(v));
         }
     }
-        cout  << weight << "\n";
-    for (Edge e : result) {
+      cout  << maxN;
+    /*for (Edge e : result) {
         cout << e.src << " " << e.dest <<"\n";
-    }
+    }*/
 }
 
 int main() {

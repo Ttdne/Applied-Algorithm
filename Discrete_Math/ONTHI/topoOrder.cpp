@@ -25,13 +25,13 @@ void DFS(int s){
 
 void BFS_modification(int n){
     L.clear();
-    for(int i=0; i<n; i++){
+    for(int i=1; i<=n; i++){
         for(auto v: adj_list[i]){
             Indegree[v]++;
         }
     }
     queue<int> Q;
-    for(int i=0; i<n; i++){
+    for(int i=1; i<=n; i++){
         if(Indegree[i] == 0){
             Q.push(i);
         }
@@ -51,7 +51,7 @@ void BFS_modification(int n){
     }
 }
 void TopoSort(int n){
-    for(int i=0; i<n; i++){
+    for(int i=1; i<=n; i++){
         if(!visited[i]){
             DFS(i);
         }
@@ -63,5 +63,5 @@ void TopoSort(int n){
 }
 int main(){
     input();
-    BFS_modification(n);
+    TopoSort(n);
 }

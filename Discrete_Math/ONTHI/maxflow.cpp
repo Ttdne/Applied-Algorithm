@@ -26,7 +26,7 @@ bool BFS(int s, int t) {
     while (!Q.empty()) {
         int u = Q.front();
         Q.pop();
-        for (int i = 0; i < n; i++) {
+        for (int i = 1; i <= n; i++) {
             // Nếu chưa thăm và còn khả năng dư
             if (visited[i] == 0 && capRG[u][i] > 0) {
                 pred[i] = u;
@@ -44,8 +44,8 @@ bool BFS(int s, int t) {
 // Hàm Edmonds-Karp tính luồng cực đại từ s -> t
 int EK(int s, int t) {
     // Khởi tạo đồ thị khả năng dư bằng đồ thị gốc
-    for (int u = 0; u < n; u++) {
-        for (int v = 0; v < n; v++) {
+    for (int u = 1; u <= n; u++) {
+        for (int v = 1; v <= n; v++) {
             capRG[u][v] = capG[u][v];
         }
     }
@@ -57,10 +57,21 @@ int EK(int s, int t) {
         int capP = INT_MAX;  // Khả năng tăng thêm của đường đi
 
         // Tìm khả năng dư nhỏ nhất trên đường tăng luồng
+        vector<int> path;  // Lưu lại augmenting path6
         for (int v = t; v != s; v = pred[v]) {
             int u = pred[v];
+            path.push_back(v);
             capP = min(capP, capRG[u][v]);
         }
+        path.push_back(s);
+
+        // In ra đường đi và khả năng tăng luồng
+        reverse(path.begin(), path.end());
+        cout << "Augmenting path: ";
+        for (int node : path) {
+            cout << node << " ";
+        }
+        cout << "\nPath capacity: " << capP << endl;
 
         // Cập nhật luồng và khả năng dư trên các cạnh của đường tăng luồng
         for (int v = t; v != s; v = pred[v]) {
@@ -77,5 +88,5 @@ int EK(int s, int t) {
 }
 int main(){
     input();
-    cout<<EK(s, t);
+    cout<<endl<<EK(s, t);
 }
