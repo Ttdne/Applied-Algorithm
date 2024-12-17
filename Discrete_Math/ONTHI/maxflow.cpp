@@ -58,11 +58,14 @@ int EK(int s, int t) {
 
         // Tìm khả năng dư nhỏ nhất trên đường tăng luồng
         vector<int> path;  // Lưu lại augmenting path6
+        cout<<"Flow: ";
         for (int v = t; v != s; v = pred[v]) {
             int u = pred[v];
             path.push_back(v);
+
             capP = min(capP, capRG[u][v]);
         }
+        cout<<endl;
         path.push_back(s);
 
         // In ra đường đi và khả năng tăng luồng
@@ -78,6 +81,7 @@ int EK(int s, int t) {
             int u = pred[v];
             capRG[u][v] -= capP;
             capRG[v][u] += capP;
+            cout<<capRG[u][v]<<" ";
         }
 
         // Tăng luồng cực đại

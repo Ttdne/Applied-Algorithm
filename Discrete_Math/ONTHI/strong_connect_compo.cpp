@@ -78,7 +78,7 @@ int main() {
     }
 
     // Output the number of SCCs
-    cout << count_scc(n) << endl;
+    cout << count_scc(n);
 
     return 0;
 }
